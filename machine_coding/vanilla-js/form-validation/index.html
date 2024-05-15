@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>Form Validation example</h1>
+    </header>
+
+    <form id="my-form" class="form-container">
+      <label for="name">First Name:</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Enter name"
+        class="form-input-field"
+      />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Enter email"
+        class="form-input-field"
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Enter password"
+        class="form-input-field"
+      />
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <!-- 
+      * The data-* attribute is used to store custom data private to the page or application.
+      * The data-* attribute gives us the ability to embed custom data attributes on all HTML elements.
+     -->
+    <main>
+      <h2>Data attributes</h2>
+      <ul>
+        <li data-animal-type="bird" onclick="showDetails(this)">Owl</li>
+        <li data-animal-type="insect" onclick="showDetails(this)">Ant</li>
+        <li data-animal-type="fish" onclick="showDetails(this)">Gold Fish</li>
+      </ul>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+/* :root {
+} */
+
+#add-btn {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+#add-btn:hover {
+  background-color: skyblue;
+}
+
+#input-text {
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.container {
+  padding: 0;
+  margin-top: 100px;
+  width: 50%;
+}

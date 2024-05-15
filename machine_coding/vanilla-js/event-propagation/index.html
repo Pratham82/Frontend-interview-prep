@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+  </head>
+  <style>
+    .grand-parent {
+      background-color: rgb(2, 147, 250);
+      padding: 18px;
+      margin: 10px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+
+    .parent {
+      background-color: rgb(52, 170, 254);
+      padding: 18px;
+      margin: 10px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+
+    .child {
+      background-color: rgb(109, 194, 255);
+      padding: 18px;
+      margin: 10px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <header>
+      <h1>Event Propagation</h1>
+    </header>
+    <div class="grand-parent" data-container="grand-parent">
+      Grand parent
+      <div class="parent" data-container="parent">
+        Parent
+        <div class="child" data-container="child">Child</div>
+      </div>
+    </div>
+    <!-- 
+      * Event propagation is a mechanism in JavaScript that controls how events are handled in the Document Object Model (DOM) tree
+      * Event propagation, also known as event bubbling and event capturing, is a mechanism in the DOM (Document Object Model) where events triggered on an HTML element are propagated through its ancestors or descendants in the DOM tree.
+      There are two main phases of event propagation:
+
+      * Capturing phase: During this phase, the event is captured from the top of the DOM hierarchy down to the target element. This means that events are first triggered on the outermost ancestor and then propagate downwards towards the target element.
+
+      * Bubbling phase: After the event reaches the target element, it starts to bubble up through the ancestors of the target element, from the target element itself up to the outermost ancestor.
+
+      * Event propagation allows for handling events at different levels of the DOM hierarchy. By attaching event listeners to parent elements, you can capture events that occur on their descendant elements. 
+
+      * This is useful for event delegation, where instead of attaching event listeners to individual elements, you can attach them to a common ancestor and handle events for multiple elements efficiently.
+     -->
+
+    <script>
+      const grandParentEl = document.querySelector('.grand-parent')
+      const parentEl = document.querySelector('.parent')
+      const childEl = document.querySelector('.child')
+
+      grandParentEl.addEventListener('click', e => {
+        const containerValue = grandParentEl.getAttribute('data-container')
+        alert(containerValue)
+      })
+
+      parentEl.addEventListener('click', e => {
+        const containerValue = parentEl.getAttribute('data-container')
+        alert(containerValue)
+      })
+
+      childEl.addEventListener('click', e => {
+        const containerValue = childEl.getAttribute('data-container')
+        alert(containerValue)
+      })
+
+      // const handleClick = (containerType, e) => {
+      //   const currentContainerType =
+      //     containerType.getAttribute('data-container')
+      //   alert(currentContainerType)
+      // }
+    </script>
+  </body>
+</html>
