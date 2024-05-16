@@ -107,7 +107,9 @@ const p1 = new Promise((res, rej) => res(1))
 const p3 = new Promise(res => setTimeout(() => res('Delayed promise'), 3000))
 const p2 = new Promise((res, rej) => res(2))
 const p4 = new Promise((res, rej) => setTimeout(() => res('Resolved'), 500))
-const p5 = new Promise((res, rej) => setTimeout(() => rej('Rejected!!!'), 600))
+const p5 = new Promise((res, rej) =>
+  setTimeout(() => rej('Rejected!!!'), 600)
+).catch(e => console.log(e))
 
 // const resolvedPromises = [p1, p2, p3, p4]
 const rejectedPromises = [p1, p2, p3, p4, p5]
