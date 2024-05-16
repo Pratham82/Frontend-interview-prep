@@ -1,19 +1,21 @@
-// Given an array, return an array where the each value is the product of the next two items:
-// E.g. [3, 4, 5] -> [20, 15, 12]
-// i.e 1 + 2 | 2 + 0 | 0 + 1
+// Given an array, return an array where the each value is the product of the next two items: E.g. [3, 4, 5] -> [20, 15, 12]
 
-const getProductOfNextTwo = arr => {
-  const result = []
-  for (let i = 0; i <= arr.length - 1; i++) {
-    console.log({
-      first: arr[i + 1],
-      second: arr[i + 2],
-    })
-    result.push(arr[i + 1] * arr[i + 2])
+const arr = [3, 4, 5, 6]
+let output = []
+
+arr.forEach((item, i) => {
+  let prod = 1
+
+  if (arr.length - 1 == i) {
+    prod = arr[0] * arr[1]
+    output.push(prod)
+  } else if (arr.length - 2 == i) {
+    prod = arr[arr.length - 1] * arr[0]
+    output.push(prod)
+  } else {
+    prod = arr[i + 1] * arr[i + 2]
+    output.push(prod)
   }
-  return result
-}
+})
 
-// const res = getProductOfNextTwo([3, 4, 5])
-const res = getProductOfNextTwo([3, 4, 5])
-console.log('🚀 ~ res:', res)
+// console.log(output);
