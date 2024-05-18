@@ -9,6 +9,7 @@ import CounterWithReducer from './CounterWithReducer'
 import ReRender from './ReRender'
 import AutoCompleteSearch from './AutoCompleteSearch'
 import ListBox from './ListBox'
+import RenderAutoCompleteSearch from './RenderAutoCompleteSearch'
 
 export {
   Loader,
@@ -22,4 +23,5 @@ export {
   ReRender,
   AutoCompleteSearch,
   ListBox,
+  RenderAutoCompleteSearch,
 }

@@ -44,16 +44,15 @@ export default function AutoCompleteSearch(props: IAutoCompleteSearchProps) {
   const matchingCharacters = data?.results
   const handleKeyUp = e => {
     const keyCode = e.keyCode
-    console.log({ keyCode })
     switch (true) {
       case keyCode === 13: {
         if (activeIndex === null) return
+        setQuery(matchingCharacters[activeIndex].name)
         setData(null)
         setActiveIndex(null)
         break
       }
       case keyCode === 38: {
-        console.log({ msg: 'up' })
         if (activeIndex === 0) setActiveIndex(matchingCharacters.length - 1)
         else setActiveIndex(prevIdx => prevIdx - 1)
         break
