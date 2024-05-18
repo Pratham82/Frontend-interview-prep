@@ -46,7 +46,8 @@ export default function ListBox(props: IListBoxProps) {
             listStyle: 'none',
             padding: '10px',
             borderBottom: i !== items.length - 1 ? '1px solid white' : 0,
-            backgroundColor: activeIndex === i ? 'red' : '',
+            backgroundColor: activeIndex === i ? 'white' : '',
+            color: activeIndex === i ? 'black' : 'white',
           }}
         >
           {item.name}
