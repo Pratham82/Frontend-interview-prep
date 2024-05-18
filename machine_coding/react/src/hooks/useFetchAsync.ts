@@ -1,12 +1,20 @@
 import { useState, useEffect, useCallback } from 'react'
 
-const useFetch = (url: string) => {
-  const [data, setData] = useState([])
+import debounce from 'lodash.debounce'
+
+export interface IUseFetchAsyncProps {
+  url: string
+  query?: string
+  debounceWait?: number
+}
+const useFetch = (props: IUseFetchAsyncProps) => {
+  const { url, query, debounceWait = 0 } = props
+  const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(null)
+  const [isError, setIsError] = useState<unknown>(null)
 
   const fetchData = useCallback(
-    async (fetchUrl: string) => {
+    debounce(async (fetchUrl: string) => {
       setIsLoading(true)
       try {
         if (!url) {
@@ -22,18 +30,24 @@ const useFetch = (url: string) => {
         setIsError(e)
         setIsLoading(false)
       }
-    },
+    }, debounceWait),
     [url]
   )
 
   useEffect(() => {
-    fetchData(url)
-  }, [fetchData, url])
+    if (!query) {
+      setData(null)
+      setIsError(null)
+      return
+    }
+    fetchData(`${url}${query}`)
+  }, [fetchData, query, url])
 
   return {
     data,
     isLoading,
     isError,
+    setData,
   }
 }
 export { useFetch }
