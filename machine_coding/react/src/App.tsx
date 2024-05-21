@@ -1,11 +1,12 @@
 import './App.css'
-import { RenderAutoCompleteSearch } from './components'
+import { AutoCompleteSearchSimple, ReRender } from './components'
 
 function App() {
   return (
     <div className="container">
       <h1>Vite + React</h1>
-      <RenderAutoCompleteSearch />
+      <AutoCompleteSearchSimple />
+      {/* <ReRender /> */}
     </div>
   )
 }

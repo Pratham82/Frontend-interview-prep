@@ -46,6 +46,7 @@ export default function AutoCompleteSearch(props: IAutoCompleteSearchProps) {
     const keyCode = e.keyCode
     switch (true) {
       case keyCode === 13: {
+        // enter
         if (activeIndex === null) return
         setQuery(matchingCharacters[activeIndex].name)
         setData(null)
@@ -53,11 +54,13 @@ export default function AutoCompleteSearch(props: IAutoCompleteSearchProps) {
         break
       }
       case keyCode === 38: {
+        // up
         if (activeIndex === 0) setActiveIndex(matchingCharacters.length - 1)
         else setActiveIndex(prevIdx => prevIdx - 1)
         break
       }
       case keyCode === 40: {
+        // down
         if (
           activeIndex === null ||
           activeIndex === matchingCharacters.length - 1
