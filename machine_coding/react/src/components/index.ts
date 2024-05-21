@@ -10,6 +10,8 @@ import ReRender from './ReRender'
 import AutoCompleteSearch from './AutoCompleteSearch'
 import ListBox from './ListBox'
 import RenderAutoCompleteSearch from './RenderAutoCompleteSearch'
+import TestBed from './TestBed'
+import AutoCompleteSearchSimple from './AutoCompleteSearchSimple.tsx'
 
 export {
   Loader,
@@ -24,4 +26,6 @@ export {
   AutoCompleteSearch,
   ListBox,
   RenderAutoCompleteSearch,
+  TestBed,
+  AutoCompleteSearchSimple,
 }

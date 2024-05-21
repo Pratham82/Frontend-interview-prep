@@ -1,5 +1,5 @@
 import './App.css'
-import { AutoCompleteSearchSimple, ReRender } from './components'
+import { AutoCompleteSearchSimple } from './components'
 
 function App() {
   return (
