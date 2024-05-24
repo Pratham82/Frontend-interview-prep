@@ -12,6 +12,7 @@ import ListBox from './ListBox'
 import RenderAutoCompleteSearch from './RenderAutoCompleteSearch'
 import TestBed from './TestBed'
 import AutoCompleteSearchSimple from './AutoCompleteSearchSimple.tsx'
+import PokemonDropDown from './PokemonDropDown.tsx'
 
 export {
   Loader,
@@ -28,4 +29,5 @@ export {
   RenderAutoCompleteSearch,
   TestBed,
   AutoCompleteSearchSimple,
+  PokemonDropDown,
 }
