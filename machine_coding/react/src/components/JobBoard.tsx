@@ -15,20 +15,22 @@ export default function JobBoard() {
       const data = await fetch(JOB_IDS_URL)
       const res: string[] = await data.json()
       setIsLoading(false)
-      const resArr: string[] = [...new Set(res.slice(0, fetchedJobsCount))]
-      setJobs(resArr)
-      setFetchedJobsCount(resArr.length)
+      setJobs(res)
     } catch (error) {
       console.log(error)
       setIsLoading(false)
     } finally {
       setIsLoading(false)
     }
-  }, [fetchedJobsCount])
+  }, [])
 
   useEffect(() => {
     fetchJobs()
-  }, [fetchJobs, fetchedJobsCount])
+  }, [fetchJobs])
+
+  const handleLoadMore = () => {
+    setFetchedJobsCount(p => p + 6)
+  }
 
   return (
     <div
@@ -38,7 +40,7 @@ export default function JobBoard() {
     >
       <h2>Hacker News Job Board</h2>
       <div>
-        {jobs?.map(job => (
+        {jobs?.slice(0, fetchedJobsCount).map(job => (
           <JobBlock jobId={job} key={job} />
         ))}
       </div>
@@ -46,9 +48,7 @@ export default function JobBoard() {
         style={{
           backgroundColor: 'orange',
         }}
-        onClick={() =>
-          setFetchedJobsCount(prevJobsLength => prevJobsLength + 6)
-        }
+        onClick={handleLoadMore}
       >
         {isLoading ? 'Loading Jobs...' : 'Load More '}
       </button>
