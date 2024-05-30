@@ -13,6 +13,7 @@ import RenderAutoCompleteSearch from './RenderAutoCompleteSearch'
 import TestBed from './TestBed'
 import AutoCompleteSearchSimple from './AutoCompleteSearchSimple.tsx'
 import PokemonDropDown from './PokemonDropDown.tsx'
+import JobBoard from './JobBoard.tsx'
 
 export {
   Loader,
@@ -30,4 +31,5 @@ export {
   TestBed,
   AutoCompleteSearchSimple,
   PokemonDropDown,
+  JobBoard,
 }

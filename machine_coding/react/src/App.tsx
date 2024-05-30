@@ -1,11 +1,11 @@
 import './App.css'
-import { PokemonDropDown } from './components'
+import { JobBoard } from './components'
 
 function App() {
   return (
     <div className="container">
       <h1>Vite + React</h1>
-      <PokemonDropDown />
+      <JobBoard />
     </div>
   )
 }
