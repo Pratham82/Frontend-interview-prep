@@ -14,6 +14,7 @@ import TestBed from './TestBed'
 import AutoCompleteSearchSimple from './AutoCompleteSearchSimple.tsx'
 import PokemonDropDown from './PokemonDropDown.tsx'
 import JobBoard from './JobBoard.tsx'
+import TodoList from '../components2/Random.tsx'
 
 export {
   Loader,
@@ -32,4 +33,5 @@ export {
   AutoCompleteSearchSimple,
   PokemonDropDown,
   JobBoard,
+  TodoList,
 }
