@@ -1,11 +1,13 @@
 import './App.css'
-import { JobBoard } from './components'
+import { Comp10 } from './components'
 
 function App() {
   return (
     <div className="container">
       <h1>Vite + React</h1>
-      <JobBoard />
+      {/* <FileExplorer data={fileExplorerData} />
+      <GoogleDrive data={fileExplorerData} /> */}
+      <Comp10 />
     </div>
   )
 }
