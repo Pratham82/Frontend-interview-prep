@@ -1,21 +1,20 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-export interface IUseInputProps {
-  initialValue: string | undefined
-}
-const useInput = (props: IUseInputProps) => {
-  const { initialValue = '' } = props
+const useInput = (initialValue = "") => {
+  const [value, setValue] = useState(initialValue);
 
-  const [value, setValue] = useState<string>(initialValue)
+  const onChange = (e) => setValue(e.target.value);
+  const onReset = () => setValue("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-  }
+  return {
+    value,
+    onChange,
+    onReset,
+    bind: {
+      value,
+      onChange,
+    },
+  };
+};
 
-  const reset = () => {
-    setValue(initialValue)
-  }
-  return { value, handleChange, reset }
-}
-
-export { useInput }
+export { useInput };
