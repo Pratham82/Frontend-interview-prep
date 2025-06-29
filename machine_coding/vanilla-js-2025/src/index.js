@@ -13,4 +13,4 @@ const loadComponent = async name => {
   }
 }
 
-loadComponent("pokemons")
+loadComponent("products")
