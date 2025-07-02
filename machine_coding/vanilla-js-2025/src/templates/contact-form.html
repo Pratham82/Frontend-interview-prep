@@ -1,0 +1,59 @@
+<style>
+  input {
+    padding: 5px 10px;
+    /* border-radius: 5px; */
+    /* border: 1px solid pink; */
+  }
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  legend {
+    margin-bottom: 0.75rem;
+  }
+  .error {
+    color: red;
+    font-size: 0.875rem;
+    outline: red solid 1px;
+  }
+</style>
+<template id="contact-form-template">
+  <div>
+    <h2>Contact form</h2>
+    <form id="contact-form">
+      <fieldset>
+        <legend>Personal Info</legend>
+        <div class="form-group">
+          <label for="fname">First Name:</label>
+          <input type="text" name="fname" id="fname" value="" placeholder="Enter first name" />
+          <small id="fname-error"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="lname">Last Name:</label>
+          <input type="text" name="lname" id="lname" value="" placeholder="Enter last name" />
+          <small id="lname-error"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" name="phone" id="phone" value="" placeholder="Enter phone number" />
+          <small id="phone-error"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" value="" placeholder="Enter email" />
+          <small id="email-error"></small>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Submit" />
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</template>
