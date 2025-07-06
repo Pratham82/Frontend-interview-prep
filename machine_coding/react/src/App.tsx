@@ -4,6 +4,7 @@ import { AutoCompleteSearch, AutoCompleteSearchSimple, Comp10 } from "./componen
 import { store } from "./redux-project/store/store"
 import AnimatedBackground from "./components3/AnimatedBG"
 import AutoCompleteSimpler from "./components/AutoCompleteSimpler"
+import GithubComponent from "./components3/GithubComponent"
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         {/* <Comp10 /> */}
         {/* <PokeAPIComponent /> */}
         {/* <AutoCompleteSearchSimple /> */}
-        <AutoCompleteSimpler />
+        {/* <AutoCompleteSimpler /> */}
+        <GithubComponent />
       </div>
-      <AnimatedBackground />
+      {/* <AnimatedBackground /> */}
     </Provider>
   )
 }
