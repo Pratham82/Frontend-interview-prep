@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optimized Navbar</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+
+      .nav-flex {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        border: 1px solid black;
+        background-color: #f8f8f8;
+      }
+
+      .nav__logo {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .nav__links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+      }
+
+      .nav__links li a {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+      }
+
+      .nav__links li a:hover {
+        color: royalblue;
+      }
+
+      /* Grid styles */
+      .nav-grid {
+        display: grid;
+        padding: 1rem 2rem;
+        grid-template-columns: 3fr 1fr;
+        border: 1px solid black;
+        margin-top: 1rem;
+      }
+      .nav__links_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      @media (max-width: 756px) {
+        .nav-flex {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1rem;
+        }
+        .nav__links {
+          flex-direction: column;
+          margin-top: 1rem;
+          gap: 6px;
+        }
+
+        .nav-grid {
+          grid-template-columns: 1fr;
+          row-gap: 1rem;
+        }
+        .nav__links_grid {
+          grid-template-columns: 1fr;
+          row-gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main navigation" class="nav-flex">
+      <div class="nav__logo">Logo</div>
+      <ul class="nav__links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <nav class="nav-grid">
+      <div class="nav__logo">Logo</div>
+      <ul class="nav__links_grid">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

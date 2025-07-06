@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .images-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Images</h1>
+    <main>
+      <section>
+        <h2>Images layout:</h2>
+        <div class="images-container"></div>
+      </section>
+    </main>
+  </body>
+  <script>
+    console.log({
+      msg: "connected",
+    })
+    const imageContainer = document.querySelector(".images-container")
+    const fetchPics = async () => {
+      const res = await fetch("https://picsum.photos/v2/list?page=1&limit=10")
+      const data = await res.json()
+      return data
+    }
+    fetchPics()
+
+    const loader = document.createElement("h2")
+    loader.textContent = "Loading..."
+    loader.className = "loader"
+    imageContainer.appendChild(loader)
+
+    const renderPics = async () => {
+      try {
+        isLoading = true
+        imageContainer.appendChild(loader)
+        const pics = await fetchPics()
+        if (!pics) return
+        imageContainer.removeChild(loader)
+        const images = pics?.forEach(pic => {
+          const image = document.createElement("img")
+          image.src = pic.download_url
+          image.height = "200"
+          image.width = "200"
+          imageContainer.appendChild(image)
+        })
+      } catch (error) {
+        isLoading = false
+        console.log({ msg: "unable to fetch images" })
+      } finally {
+        loader.remove()
+      }
+    }
+
+    renderPics()
+  </script>
+</html>

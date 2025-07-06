@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Holy grail layout</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: sans-serif;
+      }
+      header,
+      footer {
+        padding: 1rem;
+        text-align: center;
+        background: #333;
+        color: white;
+      }
+      main {
+        display: flex;
+        min-height: 80vh;
+      }
+
+      nav,
+      aside {
+        background: #f4f4f4;
+        padding: 1rem;
+      }
+
+      section {
+        flex: 1;
+        padding: 1rem;
+        background: #d6d4d4;
+      }
+
+      @media (max-width: 768px) {
+        main {
+          flex-direction: column;
+        }
+
+        nav,
+        aside {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>Holy grail layout</header>
+
+    <!-- Main section -->
+    <main>
+      <!-- Nav section -->
+      <nav>
+        <h2>Left sidebar</h2>
+        <ul>
+          <li>
+            <a href="#section-1">Section 1</a>
+          </li>
+          <li>
+            <a href="#section-2">Section 2</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main content -->
+      <section>
+        <h2>Main content</h2>
+        <p>Central content area</p>
+      </section>
+
+      <!-- Aside -->
+      <aside>
+        <h2>Right sidebar</h2>
+        <p>Additional info, ads, or related links</p>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>Site footer 2025&copy;</footer>
+  </body>
+</html>

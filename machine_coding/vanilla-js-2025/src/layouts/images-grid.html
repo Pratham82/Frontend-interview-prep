@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Image Gallery</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        padding: 1rem;
+        font-family: sans-serif;
+      }
+
+      .images-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .images-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .loader {
+        grid-column: 1 / -1;
+        text-align: center;
+        font-size: 1.5rem;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="images-container"></div>
+
+    <script>
+      const imageContainer = document.querySelector(".images-container")
+
+      const fetchPics = async () => {
+        const res = await fetch("https://picsum.photos/v2/list?page=1&limit=10")
+        const data = await res.json()
+        return data
+      }
+
+      const renderPics = async () => {
+        const loader = document.createElement("h2")
+        loader.textContent = "Loading..."
+        loader.className = "loader"
+        imageContainer.appendChild(loader)
+
+        try {
+          const pics = await fetchPics()
+          if (!pics) return
+
+          // Remove loader before appending images
+          loader.remove()
+
+          pics.forEach(pic => {
+            const image = document.createElement("img")
+            image.src = pic.download_url
+            image.alt = "Random Image"
+            imageContainer.appendChild(image)
+          })
+        } catch (error) {
+          loader.textContent = "Failed to load images."
+          console.error("Error fetching images:", error)
+        }
+      }
+
+      renderPics()
+    </script>
+  </body>
+</html>

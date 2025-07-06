@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container-1 {
+      display: flex;
+      flex-direction: column;
+      height: 40vh;
+      margin-bottom: 10px;
+    }
+    .item {
+      flex: 1;
+      border: 1px solid black;
+      padding: 10px 20px;
+      display: grid;
+      place-content: center;
+    }
+    .item:nth-child(1) {
+      flex: 2;
+    }
+    .item:nth-child(even) {
+      background-color: gray;
+      color: white;
+    }
+
+    .grid-container {
+      display: grid;
+      height: 40vh;
+      grid-template-rows: 4fr 1fr 1fr;
+    }
+    .grid-item {
+      display: grid;
+      place-content: center;
+      border: 1px solid black;
+    }
+    .grid-item:nth-child(even) {
+      background-color: gray;
+    }
+  </style>
+  <body>
+    <h1>Flex layouts</h1>
+    <main>
+      <section>
+        <h2></h2>
+        <div class="container-1">
+          <div class="item">item-1</div>
+          <div class="item">item-2</div>
+          <div class="item">item-3</div>
+        </div>
+      </section>
+      <section>
+        <div class="grid-container">
+          <div class="grid-item">grid-item1</div>
+          <div class="grid-item">grid-item2</div>
+          <div class="grid-item">grid-item3</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
