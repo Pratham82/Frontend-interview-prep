@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Product Listing</h1>
+    <select id="sort-btn">
+      <option value="asc" selected>Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <div class="container"></div>
+  </body>
+  <script>
+    const PRODUCTS_URL = "https://fakestoreapi.com/products?sort=asc"
+    const getProducts = async () => {
+      try {
+        const res = await fetch(PRODUCTS_URL)
+        const data = await res.json()
+        return data
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const renderProducts = async () => {
+      const container = document.querySelector(".container")
+      container.style.cssText = "display:flex;flex-direction:column;gap:10px"
+      const sortBtn = document.getElementById("sort-btn")
+      const products = await getProducts()
+
+      const sortProducts = (sortOrder, products) => {
+        console.log("🚀 ~ sortProducts ~ sortOrder:", sortOrder)
+        if (!products) return
+        return [...products].sort((a, b) => {
+          if (sortOrder == "asc") return a.price - b.price
+          if (sortOrder == "desc") return b.price - a.price
+          return 0
+        })
+      }
+
+      let productsToDisplay = sortProducts("asc", [...products])
+
+      const displayList = list => {
+        container.innerHTML = ""
+        list.forEach(product => {
+          const productBlock = document.createElement("div")
+          productBlock.style.cssText =
+            "display:flex; border: 1px solid black;gap:10px; align-items:center;padding: 10px"
+
+          const productText = document.createElement("p")
+          productText.textContent = product.title
+
+          const productPrice = document.createElement("p")
+          productPrice.textContent = product.price
+          productPrice.style.cssText = "font-weight:bold"
+
+          const rightContainer = document.createElement("div")
+          rightContainer.appendChild(productText)
+          rightContainer.appendChild(productPrice)
+
+          const productImage = document.createElement("img")
+          productImage.src = product.image
+          productImage.width = 100
+          productImage.height = 100
+
+          const deleteBtn = document.createElement("button")
+          deleteBtn.textContent = "❌"
+          deleteBtn.style.cssText = "align-self:center;margin-left:auto"
+
+          productBlock.appendChild(productImage)
+          productBlock.appendChild(rightContainer)
+          productBlock.appendChild(deleteBtn)
+
+          deleteBtn.addEventListener("click", e => {
+            console.log(e)
+            container.removeChild(productBlock)
+          })
+          container.appendChild(productBlock)
+        })
+      }
+
+      displayList(productsToDisplay)
+
+      sortBtn.addEventListener("change", e => {
+        const sortingValue = e.target.value
+        productsToDisplay = sortProducts(sortingValue, products)
+
+        displayList(productsToDisplay)
+      })
+    }
+    renderProducts()
+  </script>
+</html>

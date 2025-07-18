@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="card" data-price="99">Product A - ₹99</div>
+      <div class="card" data-price="59">Product B - ₹59</div>
+      <div class="card" data-price="149">Product C - ₹149</div>
+    </div>
+
+    <button id="sortAsc">Sort by Price ↑</button>
+    <button id="sortDesc">Sort by Price ↓</button>
+  </body>
+  <script>
+    const container = document.getElementById("container")
+    const cards = Array.from(container.querySelectorAll(".card"))
+
+    document.getElementById("sortAsc").addEventListener("click", () => {
+      sortCardsByPrice("asc")
+    })
+
+    document.getElementById("sortDesc").addEventListener("click", () => {
+      sortCardsByPrice("desc")
+    })
+
+    function sortCardsByPrice(order = "asc") {
+      const sorted = cards.sort((a, b) => {
+        const priceA = parseFloat(a.dataset.price)
+        const priceB = parseFloat(b.dataset.price)
+        return order === "asc" ? priceA - priceB : priceB - priceA
+      })
+
+      //* For comparing strings
+      // const nameA = a.dataset.name.toLowerCase();
+      // const nameB = b.dataset.name.toLowerCase();
+      // return nameA.localeCompare(nameB); // use for strings
+
+      // Clear and re-append in sorted order
+      container.innerHTML = ""
+      sorted.forEach(card => container.appendChild(card))
+    }
+  </script>
+</html>

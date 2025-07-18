@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Pokemon API</h1>
+    <main>
+      <section>
+        <select id="pokemon-select">
+          <option>Choose Pokemon</option>
+        </select>
+        <div id="container"></div>
+      </section>
+    </main>
+  </body>
+  <script>
+    const ALL_POKEMONS_API_URL = "https://pokeapi.co/api/v2/pokemon/"
+    const cache = new Map()
+    const fetchPokemons = async (pokemonId = "") => {
+      if (cache.has(pokemonId)) {
+        return cache.get(pokemonId)
+      } else {
+        const res = await fetch(`${ALL_POKEMONS_API_URL}/${pokemonId}`)
+        const data = await res.json()
+        cache.set(pokemonId, data)
+        return data
+      }
+    }
+
+    const container = document.getElementById("container")
+    const pokemonSelect = document.getElementById("pokemon-select")
+
+    const renderPokemons = async () => {
+      const pokemons = await fetchPokemons()
+      console.log("🚀 ~ renderPokemons ~ pokemons:", pokemons)
+
+      pokemons.results.forEach(pokemon => {
+        const option = document.createElement("option")
+        option.textContent = pokemon.name
+        option.value = pokemon.name
+
+        pokemonSelect.appendChild(option)
+      })
+
+      pokemonSelect.addEventListener("change", async e => {
+        console.log(e)
+        const pokemonFromInput = e.target.value
+
+        const pokemonData = await fetchPokemons(pokemonFromInput)
+        console.log("🚀 ~ renderPokemons ~ pokemonData:", pokemonData)
+
+        const pokemonDetails = document.createElement("div")
+
+        const pokemonImage = document.createElement("img")
+        pokemonImage.width = 200
+        pokemonImage.height = 200
+        pokemonImage.src = pokemonData.sprites.front_default
+
+        const pokemonName = document.createElement("p")
+        pokemonName.textContent = pokemonData.name
+
+        pokemonDetails.appendChild(pokemonImage)
+        pokemonDetails.appendChild(pokemonName)
+
+        container.replaceChildren(pokemonDetails)
+      })
+    }
+    renderPokemons()
+  </script>
+</html>

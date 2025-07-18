@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      /* .contact-form__group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      } */
+      .submit-btn {
+        align-self: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contact form</h1>
+    <main>
+      <section>
+        <form id="contact-form">
+          <div class="contact-form__group">
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname" value="" placeholder="Enter First name" />
+            <small class="error-msg" data-error-fname></small>
+          </div>
+          <div class="contact-form__group">
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="lname" value="" placeholder="Enter Last name" />
+            <small data-error-lname></small>
+          </div>
+
+          <div class="contact-form__group">
+            <label for="contact">Contact</label>
+            <input type="number" name="contact" id="contact" value="" placeholder="Enter Contact" />
+            <small data-error-contact></small>
+          </div>
+          <div class="contact-form__group">
+            <label for="email"> Email</label>
+            <input type="email" name="email" id="email" value="" placeholder="Enter Email" />
+            <small data-error-email></small>
+          </div>
+          <input class="submit-btn" type="submit" value="Submit" id="submit" />
+        </form>
+      </section>
+    </main>
+  </body>
+  <script>
+    const fields = ["fname", "lname", "contact", "email"]
+    const contactForm = document.getElementById("contact-form")
+    const submitBtn = document.querySelector(".submit-btn")
+    const errors = {}
+
+    // clear error element
+    const clearErrors = () => {
+      fields.forEach(field => {
+        const errorEl = getError(field)
+        if (errorEl) {
+          errorEl.textContent = ""
+          delete errors[field]
+        }
+      })
+    }
+
+    const getInput = name => contactForm[name]
+    const getError = name => document.querySelector(`[data-error-${name}]`)
+
+    submitBtn.addEventListener("click", e => {
+      e.preventDefault()
+      clearErrors()
+
+      // validate all fields
+      fields.forEach(field => {
+        const value = getInput(field).value.trim()
+        // add errors
+        if (!value) {
+          errors[field] = `The ${field} should not be empty`
+        }
+        const errorElement = getError(field)
+        errorElement.textContent = errors[field]
+      })
+
+      if (Object.keys(errors).length === 0) {
+        console.log({ msg: "no errors" })
+        console.log({ action: "do submit" })
+      }
+    })
+    // validate
+    // submit after validate
+  </script>
+</html>
